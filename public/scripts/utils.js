@@ -1,7 +1,7 @@
-function centerSprite(sprite) {
-    let x = (window.innerWidth / 2) - (sprite.width / 2);
-    let y = (window.innerHeight / 2) - (sprite.height / 2);
-    sprite.position.set(x, y);
+function center(displayObject) {
+    let x = (window.innerWidth / 2) - (displayObject.width / 2);
+    let y = (window.innerHeight / 2) - (displayObject.height / 2);
+    displayObject.position.set(x, y);
 }
 
 function getSprite(resource) {

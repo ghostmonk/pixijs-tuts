@@ -35,6 +35,6 @@ function showCat() {
     cat.scale.set(1.5);
     cat.anchor.set(0.5, 0.5);
     cat.rotation = 0.5;
-    centerSprite(cat);
+    center(cat);
     app.stage.addChild(cat);
 }
