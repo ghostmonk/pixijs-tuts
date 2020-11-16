@@ -4,6 +4,10 @@ function center(displayObject) {
     displayObject.position.set(x, y);
 }
 
+function centerX(displayObject) {
+        displayObject.x = window.innerWidth / 2 - displayObject.width / 2;
+}
+
 function getSprite(resource) {
     let texture = resources[resource].texture;
     return new Sprite(texture);
@@ -57,4 +61,73 @@ function keyboard(value) {
     }
 
     return key;
+}
+
+function addControls(dispObj) {
+    dispObj.vx = 0;
+    dispObj.vy = 0;
+
+    let left = keyboard("ArrowLeft");
+    left.press = () => {
+        dispObj.vx = -5;
+        dispObj.vy = 0;
+    }
+    left.release = () => {
+        if (!right.isDown && dispObj.vy === 0) {
+            dispObj.vx = 0;
+        }
+    }
+
+    let up = keyboard("ArrowUp");
+    up.press = () => {
+        dispObj.vy = -5;
+        dispObj.vx = 0;
+    }
+    up.release = () => {
+        if (!down.isDown && dispObj.vx === 0) {
+            dispObj.vy = 0;
+        }
+    }
+
+    let right = keyboard("ArrowRight");
+    right.press = () => {
+        dispObj.vx = 5;
+        dispObj.vy = 0;
+    }
+    right.release = () => {
+        if (!left.isDown && dispObj.vy === 0) {
+            dispObj.vx = 0;
+        }
+    }
+
+    let down = keyboard("ArrowDown");
+    down.press = () => {
+        dispObj.vy = 5;
+        dispObj.vx = 0;
+    }
+    down.release = () => {
+        if (!up.isDown && dispObj.vx === 0) {
+            dispObj.vy = 0;
+        }
+    }
+}
+
+function hitTestRectangle(a, b) {
+    centerAX = a.x + a.width / 2;
+    centerAY = a.y + a.height / 2;
+    centerBX = b.x + b.width / 2;
+    centerBY = b.y + b.height / 2;
+
+    halfWidthA = a.width / 2;
+    halfHeightA = a.height / 2;
+    halfWidthB = b.width / 2;
+    halfHeightB = b.height / 2;
+
+    let vx = centerAX - centerBX;
+    let vy = centerAY - centerBY;
+    let halfWidths = halfWidthA + halfWidthB;
+    let halfHeights = halfHeightA + halfHeightB;
+
+    return Math.abs(vx) < halfWidths && 
+        Math.abs(vy) < halfHeights;
 }
