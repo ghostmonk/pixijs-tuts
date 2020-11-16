@@ -8,6 +8,7 @@ let loader = PIXI.loader;
 let resources = PIXI.loader.resources;
 let Sprite = PIXI.Sprite;
 let Rectangle = PIXI.Rectangle;
+let Graphics = PIXI.Graphics;
 
 let app = new Application({
     antialias: true,
