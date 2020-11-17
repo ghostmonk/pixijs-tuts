@@ -5,7 +5,11 @@ function center(displayObject) {
 }
 
 function centerX(displayObject) {
-        displayObject.x = window.innerWidth / 2 - displayObject.width / 2;
+    displayObject.x = window.innerWidth / 2 - displayObject.width / 2;
+}
+
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function getSprite(resource) {
@@ -110,6 +114,31 @@ function addControls(dispObj) {
             dispObj.vy = 0;
         }
     }
+}
+
+function contain(display, container) {
+    let collision = undefined;
+    if(display.x < container.x) {
+        display.x = container.x;
+        collision = "left";
+    }
+
+    if(display.y < container.y) {
+        display.y = container.y;
+        collision = "top";
+    }
+
+    if(display.x + display.width > container.width) {
+        display.x = container.width - display.width;
+        collision = "right";
+    }
+
+    if(display.y + display.height > container.height) {
+        display.y = container.height - display.height;
+        collision = "bottom"
+    }
+
+    return collision;
 }
 
 function hitTestRectangle(a, b) {

@@ -11,6 +11,7 @@ let Rectangle = PIXI.Rectangle;
 let Graphics = PIXI.Graphics;
 let Text = PIXI.Text;
 let TextStyle = PIXI.TextStyle;
+let Container = PIXI.Container;
 
 let app = new Application({
     antialias: true,
